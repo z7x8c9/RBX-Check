@@ -39,22 +39,22 @@ def switch_language():
 
 def update_labels():
     if lang == "EN":
-        app.title("RBX check")
+        app.title("Roblox Account Checker")
         language_label.config(text="Language")
-        accounts_label.config(text="Accounts path")
-        proxy_label.config(text="Proxy")
-        output_label.config(text="Output")
-        start_button.config(text="Start")
+        accounts_label.config(text="Path to accounts file")
+        proxy_label.config(text="Proxy server")
+        output_label.config(text="Path to output file")
+        start_button.config(text="Start checking")
         browse_accounts_button.config(text="Browse")
         browse_output_button.config(text="Browse")
     else:
-        app.title("RBX check")
+        app.title("Проверка аккаунтов Roblox")
         language_label.config(text="Язык")
         accounts_label.config(text='''Путь к файлу
 с аккаунтами''')
-        proxy_label.config(text="Прокси")
-        output_label.config(text='''Путь для файла 
-с рабочими аккаунтами''')
+        proxy_label.config(text="Прокси сервер")
+        output_label.config(text='''Путь для файла с 
+=рабочими аккаунтами''')
         start_button.config(text="Начать проверку")
         browse_accounts_button.config(text="Обзор")
         browse_output_button.config(text="Обзор")
@@ -147,27 +147,31 @@ language_label = app.children["language_label"]
 language_option_menu = tk.OptionMenu(app, language_var, "EN", "RU", command=lambda _: switch_language())
 language_option_menu.grid(row=0, column=1)
 
-tk.Label(app, text="Accounts path", name="accounts_label").grid(row=1, column=0)
+tk.Label(app, text="Path to accounts file", name="accounts_label").grid(row=1, column=0)
 accounts_label = app.children["accounts_label"]
 accounts_path_entry = tk.Entry(app, width=50)
 accounts_path_entry.grid(row=1, column=1)
+accounts_path_entry.delete(0, tk.END)
+accounts_path_entry.insert(0, accounts_file_path)
 browse_accounts_button = tk.Button(app, text="Browse", command=browse_accounts_file)
 browse_accounts_button.grid(row=1, column=2)
 
-tk.Label(app, text="Proxy", name="proxy_label").grid(row=2, column=0)
+tk.Label(app, text="Proxy server", name="proxy_label").grid(row=2, column=0)
 proxy_label = app.children["proxy_label"]
 proxy_entry = tk.Entry(app, width=50)
 proxy_entry.insert(0, proxy)
 proxy_entry.grid(row=2, column=1)
 
-tk.Label(app, text="Output path", name="output_label").grid(row=3, column=0)
+tk.Label(app, text="Path to output file", name="output_label").grid(row=3, column=0)
 output_label = app.children["output_label"]
 output_path_entry = tk.Entry(app, width=50)
 output_path_entry.grid(row=3, column=1)
+output_path_entry.delete(0, tk.END)
+output_path_entry.insert(0, output_file_path)
 browse_output_button = tk.Button(app, text="Browse", command=browse_output_file)
 browse_output_button.grid(row=3, column=2)
 
-start_button = tk.Button(app, text="Start", command=start_checking)
+start_button = tk.Button(app, text="Start checking", command=start_checking)
 start_button.grid(row=4, column=0, columnspan=3)
 
 log_text = tk.Text(app, height=10, width=70)
